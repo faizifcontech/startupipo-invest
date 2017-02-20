@@ -1,9 +1,10 @@
 @extends('layouts.user', ['title' => 'Payback Period'])
 @section('css')
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
 @endsection
 @section('js')
-
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    @include('sweet::alert')
 @endsection
 
 @section('content')

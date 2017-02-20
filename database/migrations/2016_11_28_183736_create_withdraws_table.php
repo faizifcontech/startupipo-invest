@@ -20,6 +20,9 @@ class CreateWithdrawsTable extends Migration
             $table->integer('status');
             $table->decimal('sum_withdrawal', 9, 2)->default(0.00);
             $table->string('transfer_to_bank');
+            $table->string('account_no');
+            $table->string('swift_code')->nullable();
+            $table->string('remark')->nullable();
             $table->timestamps();
         });
     }

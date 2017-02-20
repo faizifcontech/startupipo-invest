@@ -1,10 +1,12 @@
 @extends('layouts.user', ['title' => 'History of withdrawal'])
 @section('css')
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
 @endsection
 @section('js')
-
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    @include('sweet::alert')
 @endsection
+
 
 @section('content')
     <div class="be-content">
@@ -18,8 +20,9 @@
                                 <tr>
                                     <th>Name</th>
                                     <th class="number">Total Withdrawal</th>
-                                    <th class="number">Transfer to</th>
-                                    <th class="actions">Date</th>
+                                    <th>Transfer to</th>
+                                    <th class="number">Account no.</th>
+                                    <th class="actions">Request on</th>
                                     <th class="actions">Status</th>
                                 </tr>
                                 </thead>
@@ -28,8 +31,9 @@
                                     <tr>
                                         <td>{{ $listHistory->name }}</td>
                                         <td class="number">- RM {{ $listHistory->sum_withdrawal }}</td>
-                                        <td class="number">{{ $listHistory->transfer_to_bank }}</td>
-                                        <td class="actions">{{ $listHistory->created_at }}</td>
+                                        <td >{{ $listHistory->transfer_to_bank }}</td>
+                                        <td class="number">{{ $listHistory->account_no }}</td>
+                                        <td class="actions">{{ $listHistory->created_at->toFormattedDateString() }}</td>
                                         <td class="actions">
                                             @if( $listHistory->status  === 2)
                                                 <span class="label label-success">Approved</span>
