@@ -36,7 +36,8 @@ Route::group(['prefix' => 'view'], function () {
     Route::get('fund-history', 'ShareController@history');
 
     //payBack send to wallet
-    Route::post('send-to-wallet/{id}', 'ShareController@clearPayback');
+    Route::post('send-to-wallet/{uuid}', 'ShareController@clearPayback');
+    Route::post('monthly-profit/{id}', 'ShareController@SendProfitMonthly');
 
     //request withdrawal
     Route::get('withdrawal-all', 'WithdrawController@senaraiKeluar');

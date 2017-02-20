@@ -70,12 +70,7 @@
                                         </a></div>
                                 </div>
                                 <div class="form-group row login-submit">
-                                    <div class="col-xs-6">
-                                        <a href="{{ url('/register') }}" type="submit" class="btn btn-default btn-xl">
-                                            Register
-                                        </a>
-                                    </div>
-                                    <div class="col-xs-6">
+                                    <div class="col-xs-23">
                                         <button type="submit" class="btn btn-primary btn-xl">Sign
                                             in
                                         </button>

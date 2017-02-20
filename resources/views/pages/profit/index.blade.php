@@ -1,9 +1,10 @@
 @extends('layouts.user', ['title' => 'All Monthly Profit '])
 @section('css')
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
 @endsection
 @section('js')
-
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    @include('sweet::alert')
 @endsection
 
 @section('content')
@@ -26,16 +27,25 @@
                                     @foreach($profit as $listProfit)
                                         <tr>
                                             <td>{{ date("jS F Y", strtotime($listProfit->due_date))  }}</td>
-                                            <td class="actions">639</td>
-                                            <td class="actions"><a href="#" class="btn btn-space btn-primary">Send to
-                                                    wallet</a>
+                                            <td class="actions">RM {{ $listProfit->profit_amount }}</td>
+                                            @if($listProfit->active == 1)
+                                            <td class="actions">
+                                                {!! Form::open(['action' => ['ShareController@SendProfitMonthly', $listProfit->id ]]) !!}
+                                                    {!! Form::submit('Send To Wallet', ['class' => 'btn btn-space btn-success']) !!}
+                                                {!! Form::close() !!}
                                             </td>
+                                              @else
+                                                <td class="actions">
+                                                <a disabled="disabled" class="btn btn-space btn-default active">Transferred</a>
+                                                </td>
+                                            @endif
                                         </tr>
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
+                        {{ $profit->links() }}
                     </div>
                 </div>
             @else

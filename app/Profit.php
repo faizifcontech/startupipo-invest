@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Profit extends Model
 {
-    protected $fillable =  ["user_id", "profit_amount", "active"];
+    protected $fillable =  ["user_id", "profit_amount", "active", "created_at", "updated_at"];
 
     public $timestamps = false;
 

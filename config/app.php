@@ -173,6 +173,7 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class, // ide helper
         Bugsnag\BugsnagLaravel\BugsnagServiceProvider::class,
         ConsoleTVs\Charts\ChartsServiceProvider::class, // the fucking chart
+        UxWeb\SweetAlert\SweetAlertServiceProvider::class,
         //
 
         /*
@@ -239,7 +240,8 @@ return [
         'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'Bugsnag' => Bugsnag\BugsnagLaravel\Facades\Bugsnag::class,
-        'Charts' => ConsoleTVs\Charts\Facades\Charts::class
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
+        'Alert' => UxWeb\SweetAlert\SweetAlert::class
     ],
 
 ];

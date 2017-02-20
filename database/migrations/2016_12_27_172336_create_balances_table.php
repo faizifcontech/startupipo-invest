@@ -19,7 +19,8 @@ class CreateBalancesTable extends Migration
             $table->integer('package')->nullable();
             $table->integer('total_lot')->nullable();
             $table->integer('total_share')->nullable();
-           $table->decimal('monthly_profit', 9, 2)->default(0.00);
+            $table->string('uuid')->unique();
+            $table->decimal('monthly_profit', 9, 2)->default(0.00);
             $table->decimal('total_investment', 9, 2)->default(0.00);
             $table->boolean('active')->default(0);
             $table->timestamps();

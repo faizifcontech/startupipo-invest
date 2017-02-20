@@ -85,12 +85,14 @@ class AgentProfitController extends Controller
                 DB::table('profits')->insert($multplyDB);
             }
             $currentShare = lotshare::find(1)->lotshare;
+            $stringUUID = str_random(8);
             Balance::create(
                 [
                     'user_id' => $shareID->user_id,
                     'package' => $shareID->model_of_investment,
                     'total_lot' => $shareID->per_lot,
                     'total_share' => $currentShare,
+                    'uuid' => strtolower($stringUUID),
                     'monthly_profit' =>  $shareID->monthly_profit,
                     'active' => 1,
                     'total_investment' => $getInvest,

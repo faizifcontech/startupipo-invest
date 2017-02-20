@@ -7,7 +7,7 @@ use Auth;
 use DB;
 class Balance extends Model
 {
-    protected $fillable = [ 'total_investment', 'user_id', 'package', 'active', 'monthly_profit', 'total_lot', 'total_share' ];
+    protected $fillable = [ 'total_investment', 'user_id', 'package', 'uuid', 'active', 'monthly_profit', 'total_lot', 'total_share' ];
 
    public static function allBalance(){
        $userID = Auth::id();

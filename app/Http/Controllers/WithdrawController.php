@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Withdraw;
 use App\Bank;
+use App\Billetera;
 use DB;
 class WithdrawController extends Controller
 {
@@ -21,7 +22,7 @@ class WithdrawController extends Controller
         $data["semuaSenarai"] = DB::table('balances')
                     ->where('user_id', $userID)
                     ->where('active', 1)
-                    ->get();
+                    ->paginate(15);
         $data["bankCheck"] = Bank::where('user_id', $userID)->first();    // bank check and  profile check  frankly is same shit just different syntax !!  don't confuse
         $data["profileCheck"] = Profile::where('user_id', $userID)->exists(); // bank check and  profile check  frankly is same shit just different syntax !!
 
@@ -41,6 +42,14 @@ class WithdrawController extends Controller
         $data["adaWithdrawal"] = DB::table('balances')->where('user_id', '=', $userID )->exists();
        $checkbankAcc = DB::table('banks')->where('user_id', '=', $userID )->exists();
 
+       $checkAmount = Billetera::where('user_id', $userID);
+
+       if ($checkAmount->exists()){
+         $currentAmount =  $checkAmount->first();
+           $data['amount'] =  $currentAmount->amount;
+       }else{
+           $data['amount'] = 0.00;
+       }
        if($checkbankAcc) {
            $data["b_name"] = Auth::user()->bank->bankowner;
            $data["b_bank"] = Auth::user()->bank->bankname;

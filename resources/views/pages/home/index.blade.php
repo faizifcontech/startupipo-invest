@@ -57,7 +57,7 @@
                             <div class="panel-heading panel-heading-divider">Alert !</div>
                             <div class="panel-body">
                                 <p>To start make any funds, please keep your member profile complete and up-to-date </p>
-                                <a href="{{ action('ProfileController@index') }}" class="btn btn-space btn-warning"><i class="icon icon-left mdi mdi-alert-triangle"></i> Update Profile</a>
+                                <a href="{{ action('ProfileController@index') }}" class="btn btn-space btn-danger"><i class="icon icon-left mdi mdi-alert-triangle"></i> Update Profile</a>
                             </div>
                         </div>
                      @endif
@@ -125,7 +125,7 @@
                                       @elseif ($history->status == 3)
                                         <td class="text-danger">Rejected</td>
                                        @else
-                                        <td class="text-success">Processing</td>
+                                        <td class="text-warning">Processing</td>
                                      @endif
                                 </tr>
                                   @endforeach
