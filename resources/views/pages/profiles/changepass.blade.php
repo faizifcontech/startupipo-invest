@@ -1,5 +1,11 @@
 @extends('layouts.user', ['title' => 'Change password'])
-
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/sweetalert.css') }}">
+@endsection
+@section('js')
+    <script src="{{ asset('assets/js/sweetalert.min.js') }}"></script>
+    @include('sweet::alert')
+@endsection
 @section('content')
     <div class="be-content">
 
@@ -14,31 +20,6 @@
                             <form method="POST" action="{{ action('ProfileController@changeNewPass') }}"
                                   style="border-radius: 0px;" class="form-horizontal group-border-dashed">
                             {{ csrf_field() }}
-                            <!--  ini adalah popup notification, either error or success -->
-                                @if (Session::has('success'))
-                                    <div class="form-group">
-                                        <div class="col-sm-6 col-sm-offset-3">
-                                            <div role="alert" class="alert alert-success alert-dismissible">
-                                                <button type="button" data-dismiss="alert" aria-label="Close"
-                                                        class="close">
-                                                    <span aria-hidden="true" class="mdi mdi-close"></span></button>
-                                                <span class="icon mdi mdi-check"></span><strong>Good! </strong>{{ session('success') }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
-                                @if (Session::has('error'))
-                                    <div class="form-group">
-                                        <div class="col-sm-6 col-sm-offset-3">
-                                            <div role="alert" class="alert alert-danger alert-dismissible">
-                                                <button type="button" data-dismiss="alert" aria-label="Close"
-                                                        class="close">
-                                                    <span aria-hidden="true" class="mdi mdi-close"></span></button>
-                                                <span class="icon mdi mdi-close-circle-o"></span><strong>Error! </strong>{{ session('error') }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endif
                             <!--  Tamat  notification-->
                                 <div class="form-group {{ $errors->has('current_password') ? ' has-error has-feedback' : '' }} ">
                                     <label class="col-sm-3 control-label">Current password</label>

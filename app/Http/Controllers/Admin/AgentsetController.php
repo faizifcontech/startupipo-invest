@@ -48,7 +48,7 @@ class AgentsetController extends Controller
         $agent->email = $request->email;
         $agent->gender = $request->gender;
         $agent->is_admin = 2;
-        $agent->signature = 'assets/img/sigexe.png';
+        $agent->signature = null;
         $agent->agent_referral = 'add_by_admin';
         $agent->invite_id = '1';
         $agent->invite_code = 'by_admin';

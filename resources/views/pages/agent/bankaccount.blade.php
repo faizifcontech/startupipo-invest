@@ -108,7 +108,7 @@
                                             </div>
                                             <div class="col-sm-4">
                                                 {!! Form::label('bank_name', 'Bank  Name', ['class' => 'control-label mb-10']) !!}
-                                                {!! Form::text('bank_name', null, ['class' => 'form-control', 'placeholder' => 'Bank Name']) !!}
+                                                {!! Form::select('bank_name', $bankList, null, ['class' => 'form-control']) !!}
                                                 @if ($errors->has('bank_name'))<p
                                                         class="text-danger">{{ $errors->first('bank_name') }}</p>
                                                 @endif

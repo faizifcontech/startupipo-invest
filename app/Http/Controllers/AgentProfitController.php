@@ -19,15 +19,24 @@ class AgentProfitController extends Controller
 
     public function depositList()
     {
-
         $referralName = Auth::user()->agent->ref_agent_name;
         $data['share'] = DB::table('shares')
             ->join('users', 'users.id', '=', 'shares.user_id')
             ->select('shares.*')
             ->where('users.agent_referral', '=', $referralName)
             ->latest()
-            ->paginate(15);
+            ->paginate(25);
         return view('pages.agent.getdeposit', $data);
+    }
+    public  function withdrawalList(){
+        $referralName = Auth::user()->agent->ref_agent_name;
+        $data['withdrawal'] = DB::table('withdraws')
+            ->join('users', 'users.id', '=', 'withdraws.user_id')
+            ->select('withdraws.*')
+            ->where('users.agent_referral', '=', $referralName)
+            ->latest()
+            ->paginate(25);
+        return view('pages.agent.getwithdrawal', $data);
     }
 
     public function depositEdit($id)

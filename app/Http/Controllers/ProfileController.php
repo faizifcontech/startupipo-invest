@@ -9,7 +9,7 @@ use App\User;
 use App\Profile;
 use App\Http\Requests;
 use DB;
-
+use Alert;
 class ProfileController extends Controller
 {
     public function __construct()
@@ -92,12 +92,12 @@ class ProfileController extends Controller
             $user->fill([
                 'password' => Hash::make($request->password)
             ])->save();
-
-            $request->session()->flash('success', 'Your current password has been changed');
+            alert()->error('Your current password has been changed', 'Successful')->persistent('Close');
+            $request->session()->flash('success', '');
             return back();
 
         } else {
-            $request->session()->flash('error', 'Your current password invalid');
+            alert()->error('Your current password invalid', 'Error')->persistent('Close');
             return back();
         }
     }

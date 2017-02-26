@@ -15,7 +15,8 @@
         "doctrine/dbal": "^2.5",
         "bugsnag/bugsnag-laravel": "^2.0",
         "consoletvs/charts": "4.*",
-        "uxweb/sweet-alert": "^1.4"
+        "uxweb/sweet-alert": "^1.4",
+        "h4cc/wkhtmltopdf-amd64": "0.12.x"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

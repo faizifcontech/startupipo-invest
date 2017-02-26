@@ -19,6 +19,10 @@
                             </li>
                             <li><a href="{{ action('ProfileController@index') }}"><span
                                             class="icon mdi mdi-face"></span> Account</a></li>
+                            <li><a href="{{ action('WithdrawController@create') }}"><span
+                                            class="mdi mdi-triangle-up"></span> Withdrawal Fund</a></li>
+                            <li><a href="{{ action('ShareController@deposit') }}"><span
+                                            class="mdi mdi-triangle-down"></span> Deposit Fund</a></li>
                             <li><a href="javascript:void(0)" data-toggle="modal" data-target="#md-footer-primary"><span
                                             class="icon mdi mdi-power"></span> Logout</a></li>
                         </ul>

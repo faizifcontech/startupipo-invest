@@ -20,8 +20,10 @@
     <!-- Data table CSS -->
     <link href="{{ asset('super/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css') }} " rel="stylesheet" type="text/css"/>
     <link href="{{ asset('super/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css') }} " rel="stylesheet" type="text/css">
+    @yield('css')
     <!-- Custom CSS -->
     <link href="{{ asset('super/dist/css/style.css') }}" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -74,5 +76,6 @@
 <!-- Init JavaScript -->
 <script src="{{ asset('super/dist/js/init.js') }}"></script>
 <script src="{{ asset('super/dist/js/dashboard3-data.js') }}"></script>
+@yield('js')
 </body>
 </html>

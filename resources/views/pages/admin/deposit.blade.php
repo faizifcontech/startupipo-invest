@@ -5,7 +5,7 @@
             <!-- Title -->
             <div class="row heading-bg bg-blue">
                 <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                    <h5 class="txt-light">Deposit request</h5>
+                    <h5 class="txt-light">Deposit request list</h5>
                 </div>
             </div>
             <!-- /Title -->
@@ -31,20 +31,22 @@
                                             <tr>
                                                 <th>Name</th>
                                                 <th>Total Transfer</th>
-                                                <th>Transfer to</th>
-                                                <th>ROI</th>
+                                                <th>Monthly Profit</th>
+                                                <th>Proof of payment</th>
+                                                <th>Model Of Investment</th>
                                                 <th>Notes</th>
                                                 <th>Status</th>
-                                                <th>Action</th>
+                                                <th>Date</th>
                                             </tr>
 
                                             </thead>
                                             <tbody>
-                                            @foreach($depoRequest as $request)
+                                            @foreach($depo as $request)
                                             <tr>
                                                 <td>{{  \App\User::find($request->user_id)->name }}</td>
                                                 <td>RM {{ $request->total_share }}</td>
-                                                <td>{{ $request->send_to }}</td>
+                                                <td>RM {{ $request->monthly_profit }}</td>
+                                                <td align="center"><a href="{{ asset($request->saved_url) }}" target="_blank"><i class="fa  fa-file-photo-o text-inverse m-r-10"></i></a></td>
                                                 <td>@if($request->model_of_investment === 1)
                                                         <span class="label label-primary ">PACKAGE 1</span>
                                                     @elseif($request->model_of_investment === 2)
@@ -65,15 +67,14 @@
                                                         Not status
                                                     @endif
                                                 </td>
-                                                <td>@if($request->status === 1 || $request->status === 3   )
-                                                        <a href="deposit-edit/{{$request->id}}" class="btn btn-default btn-outline btn-anim">
-                                                            <i class="fa fa-pencil"></i><span class="btn-text">Edit</span></a>
-                                                </td>@endif
+                                                <td>
+                                                        {{  \Carbon\Carbon::parse($request->created_at)->diffForHumans()  }}
+                                                </td>
                                             </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        {{ $depoRequest->links() }}
+                                        {{ $depo->links() }}
                                     </div>
                                 </div>
                             </div>

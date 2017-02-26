@@ -71,7 +71,7 @@
 </P>
 <P CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 150%">
     <FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-AU"><B>IFMAL
-TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-AU">(123782-V.) ,</SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-AU"><B>
+TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-AU">(1209398-K) ,</SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-AU"><B>
 {{ $agentList["company_name"] }}</B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT SIZE=4><SPAN LANG="en-AU">
 ({{ $agentList["ssm_no"] }})</SPAN></FONT></FONT></P>
 <P LANG="en-AU" CLASS="western" ALIGN=CENTER STYLE="margin-bottom: 0in; line-height: 150%">
@@ -101,7 +101,7 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
     <BR>
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-    THIS AGREEMENT is made on the day of {{ date('Y') }}
+    THIS AGREEMENT is made on the day of {{ $dateCreate->toFormattedDateString() }}
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
     <BR>
@@ -112,7 +112,7 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
     <BR>
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-    <B>IFMAL TRADE SDN BHD </B><SPAN LANG="en-AU">(123782-V)</SPAN>, a
+    <B>IFMAL TRADE SDN BHD </B><SPAN LANG="en-AU">(1209398-K)</SPAN>, a
     company incorporated under the Companies Act 1965 and having its
     business address at No. 13, Jalan MJ 16, Taman Perindustrian Meranti
     Jaya, 47120 Puchong, Selangor (hereinafter referred to as &ldquo;<B>the
@@ -124,10 +124,8 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
     <BR>
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-<SPAN STYLE="background: #ffff00">{{ $agentList["company_name"] }}
-({{ $agentList["ssm_no"] }})</SPAN>, an entity registered under the
-    Companies Act 1965 and having its business address at <SPAN STYLE="background: #ffff00">{{ $agentList["address"] }}
-    </SPAN> (hereinafter referred to as &ldquo;<B>the Agent</B>&rdquo;)
+{{ $agentList["company_name"] }} ({{ $agentList["ssm_no"] }}), an entity registered under the
+    Companies Act 1965 and having its business address at {{ $agentList["address"] }} (hereinafter referred to as &ldquo;<B>the Agent</B>&rdquo;)
     of the one part;
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
@@ -139,9 +137,7 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
     <BR>
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-    <SPAN STYLE="background: #ffff00"></SPAN><B><SPAN STYLE="background: #ffff00">{{ Auth::user()->name }}</SPAN></B><SPAN
-            STYLE="background: #ffff00"></SPAN><B><SPAN STYLE="background: #ffff00">
-</SPAN></B><SPAN STYLE="background: #ffff00">({{ Auth::user()->profile->ic_number }})</SPAN> of<SPAN STYLE="background: #ffff00"> {{ Auth::user()->profile->location }}</SPAN> (hereinafter
+   <B>{{ Auth::user()->name }}</B><B></B>({{ Auth::user()->profile->ic_number }}) of {{ Auth::user()->profile->location }} (hereinafter
     referred to as &ldquo;<B>the Investor </B>&rdquo;) of the other part.</P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
     <BR>
@@ -174,8 +170,8 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
 </P>
 <OL TYPE=A START=2>
     <LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-	<SPAN STYLE="background: #ffff00">{{ $agentList["company_name"] }}
-	(No: {{ $agentList["ssm_no"] }})</SPAN> is an agent/dealer appointed by the Company
+	{{ $agentList["company_name"] }}
+	(No: {{ $agentList["ssm_no"] }}) is an agent/dealer appointed by the Company
             (hereinafter referred to as the &ldquo;<B>Agent</B>&rdquo;).</P>
 </OL>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
@@ -214,10 +210,10 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
 <OL>
     <OL>
         <LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-                The Investor agrees to purchase from the Company <SPAN STYLE="background: #ffff00">{{ $total_lot }}</SPAN>
+                The Investor agrees to purchase from the Company {{ $total_lot }}
                 x <B>twenty-four (24)</B> boxes, each of which containing Corelle
                 16-Piece Dinnerware Set (hereinafter referred to as the &ldquo;Products&quot;)
-                for and in consideration of the sum of RM <SPAN STYLE="background: #ffff00">{{ $total_share }}</SPAN>.</P>
+                for and in consideration of the sum of RM {{ $total_share }}.</P>
     </OL>
 </OL>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-left: 0.5in; margin-bottom: 0in; line-height: 150%">
@@ -250,9 +246,9 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
             ?>
         <LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
                 The Agent promises to purchase the said Products from the Investor
-                for and in consideration of the sum of RM <SPAN STYLE="background: #ffff00">{{ $sumShare }}</SPAN>
+                for and in consideration of the sum of RM {{ $sumShare }}
                 of which shall be paid to the Investor in monthly
-                installment for the period of <SPAN STYLE="background: #ffff00">@if($package == 3) 18 @elseif($package == 2) 12 @else 6 @endif</SPAN>
+                installment for the period of @if($package == 3) 18 @elseif($package == 2) 12 @else 6 @endif
                 months.</P>
     </OL>
 </OL>
@@ -262,7 +258,7 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
 <OL>
     <OL START=4>
         <LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-                The monthly installment shall be RM <SPAN STYLE="background: #ffff00">{{ $monthly_profit }}</SPAN>
+                The monthly installment shall be RM {{ $monthly_profit }}
                 of which becomes due and payable on the 28 day of each month.</P>
     </OL>
 </OL>
@@ -271,8 +267,8 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
 <OL>
     <OL START=5>
         <LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-                The balance of RM <SPAN STYLE="background: #ffff00">{{ $total_investment }} </SPAN>shall
-                be paid to the Investor 28 days after the period of <SPAN STYLE="background: #ffff00">@if($package == 3) 18 @elseif($package == 2) 12 @else 6 @endif</SPAN>
+                The balance of RM {{ $total_investment }} shall
+                be paid to the Investor 28 days after the period of @if($package == 3) 18 @elseif($package == 2) 12 @else 6 @endif
                 months.</P>
     </OL>
 </OL>
@@ -374,7 +370,7 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
     <OL>
         <LI><P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
                 The term of this Agreement shall commence immediately and shall
-                continue in full force and effect for a period of <B><SPAN STYLE="background: #ffff00">@if($package == 3) 18 @elseif($package == 2) 12 @else 6 @endif</SPAN></B><B>
+                continue in full force and effect for a period of <B>@if($package == 3) 18 @elseif($package == 2) 12 @else 6 @endif</B><B>
                     months</B>.</P>
     </OL>
 </OL>
@@ -581,7 +577,7 @@ TRADE SDN BHD </B></SPAN></FONT></FONT><FONT FACE="Times New Roman, serif"><FONT
     IFMAL TRADE SDN BHD )
 </P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
-    (12321312-V) )</P>
+    (1209398-K) )</P>
 <P CLASS="western" ALIGN=JUSTIFY STYLE="margin-bottom: 0in; line-height: 150%">
     <BR>
 </P>

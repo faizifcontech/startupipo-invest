@@ -22,7 +22,7 @@
 
                         <div class="panel-wrapper collapse in">
                             <div class="panel-body">
-
+                            @if(count($share) > 0)
                                 <!--p class="text-muted">Add class <code>table-hover</code> in table tag.</p-->
                                 <div class="table-wrap mt-40">
                                     <div class="table-responsive">
@@ -37,7 +37,6 @@
                                                 <th>Status</th>
                                                 <th>Action</th>
                                             </tr>
-
                                             </thead>
                                             <tbody>
                                             @foreach($share as $request)
@@ -76,6 +75,9 @@
                                         {{ $share->links() }}
                                     </div>
                                 </div>
+                                @else
+                                <h4 class="text-center text-muted">No record found</h4>
+                                @endif
                             </div>
                         </div>
                     </div>

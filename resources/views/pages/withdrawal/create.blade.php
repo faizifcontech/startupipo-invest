@@ -54,8 +54,8 @@
                                 <div class="col-sm-6">
                                     <input class="form-control" type="text" name="total_withdrawal"
                                            placeholder="Your max withdrawal is RM {{ number_format($amount, 2) }}">
-                                    @if ($errors->has('total_withdrawal'))<p
-                                            class="text-danger">{{ $errors->first('total_withdrawal') }}</p>@endif
+                                    @if ($errors->has('total_withdrawal'))
+                                        <p class="text-danger">{{ $errors->first('total_withdrawal') }}</p>@endif
                                 </div>
                             </div>
                             <div class="form-group ">
@@ -64,7 +64,7 @@
                                         bank
                                         info</a>
                                     @if($checkAmount->exists())
-                                    {{ Form::submit('MAKE REQUEST', ['class' => 'btn btn-lg btn-danger pull-right']) }}
+                                    {{ Form::submit('MAKE REQUEST', ['class' => 'btn btn-lg btn-primary pull-right']) }}
                                        @else
                                         <button class="btn btn-lg btn-space btn-danger active pull-right" disabled> Disabled</button>
                                     @endif

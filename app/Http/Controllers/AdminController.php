@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Withdraw;
 use Illuminate\Http\Request;
 use App\Balance;
 use App\lotshare;
 use App\Share;
 use DB;
+use Datatables;
+
 class AdminController extends Controller
 {
     public function __construct(){
@@ -15,8 +18,9 @@ class AdminController extends Controller
         $data['totaluser'] = DB::table('users')->where('is_admin', 0 )->count();
         $data['totalagent'] = DB::table('users')->where('is_admin', 2 )->count();
         $data['latestUser'] = DB::table('users')->orderBy('created_at', 'desc')->limit(6)->get();
-       // dd($latestList);
-       // dd($data);
+
+        $data['withdrawal'] = DB::table('withdraws')->limit(9)->latest()->get();
+
         return view('pages.admin.index',  $data);
     }
     //Share add
@@ -35,5 +39,10 @@ class AdminController extends Controller
         ]);
 
         return back();
+    }
+    public function depositIndex(){
+        $data[ 'depo'] = DB::table('shares')->latest()->paginate(20);
+        //dd($data[ 'depo'] );
+        return view('pages.admin.deposit', $data);
     }
 }

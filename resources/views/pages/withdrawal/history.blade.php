@@ -7,7 +7,6 @@
     @include('sweet::alert')
 @endsection
 
-
 @section('content')
     <div class="be-content">
         <div class="main-content container-fluid">
@@ -23,6 +22,7 @@
                                     <th>Transfer to</th>
                                     <th class="number">Account no.</th>
                                     <th class="actions">Request on</th>
+                                    <th>Remark by Admin</th>
                                     <th class="actions">Status</th>
                                 </tr>
                                 </thead>
@@ -34,13 +34,16 @@
                                         <td >{{ $listHistory->transfer_to_bank }}</td>
                                         <td class="number">{{ $listHistory->account_no }}</td>
                                         <td class="actions">{{ $listHistory->created_at->toFormattedDateString() }}</td>
+                                        <td >@if($listHistory->remark == null) - @else {{ $listHistory->remark }} @endif</td>
                                         <td class="actions">
-                                            @if( $listHistory->status  === 2)
+                                            @if( $listHistory->status  === 1)
                                                 <span class="label label-success">Approved</span>
-                                            @elseif( $listHistory->status  === 1)
+                                            @elseif( $listHistory->status  === 2)
                                                 <span class="label label-danger">Rejected</span>
-                                            @else
+                                            @elseif($listHistory->status  === 0)
                                                 <span class="label label-warning">Processing</span>
+                                                @else
+                                                    <span class="label label-info">Not Available</span>
                                             @endif
                                         </td>
                                     </tr>

@@ -63,7 +63,7 @@
                                 <div class="col-sm-1 text-center" style="padding: 0;width: 40px;">
                                     <span style="font-size: 30px;">&times;</span>
                                 </div>
-                                <div class="col-sm-1">
+                                <div class="col-sm-2">
                                     {{ Form::text('per_lot', 1, ['class' => 'form-control', 'id'=>'kalidengan', "data-mask" => "limit"]) }}
                                 </div>
                                 <div class="col-sm-1 text-center" style="padding: 0;width: 40px;">
@@ -75,25 +75,34 @@
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">Return on investment</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     {!! Form::select('roi', [1 => '1% for (  1 + 6 months  )', 2 => '2% for ( 1 + 12 months )', 3 => '3% for ( 1 + 18 months  )'], 1, ['class' => 'form-control']) !!}
                                 </div>
                             </div>
                             <div class="form-group">
-                                {{ Form::label('transfer_to', 'Transfer to', ['class' => 'col-sm-3 control-label']) }}
+                                <label class="col-sm-3 control-label">Payment Method</label>
                                 <div class="col-sm-6">
-                                    {{ Form::select('transfer_to', $banklist, null, ['placeholder' => 'Bank name....',  'class' => 'form-control select2 drop-down', 'style' => 'width: 100%;']) }}
+                                    <div class="be-radio">
+                                        <input type="radio"  name="payment_method" value="Cash Payment" id="rad3">
+                                        <label for="rad3">Cash Payment</label>
+                                    </div>
+                                    @foreach($listBank as $banks)
+                                    <div class="be-radio">
+                                        <input type="radio" name="payment_method" value="{{ $banks->bankname }}" id="{{ $banks->id }}">
+                                        <label for="{{ $banks->id }}">{{ ucfirst($banks->bankowner) }} &bull; {{ strtoupper($banks->bankname) }} &bull; {{ $banks->bankaccnum }}</label>
+                                    </div>
+                                        @endforeach
                                 </div>
                             </div>
                             <div class="form-group">
                                 {{ Form::label('time_of_transaction', 'Time', ['class' => 'col-sm-3 control-label']) }}
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     {{ Form::text('time_of_transaction', null, ['class' => 'form-control  datetimepicker'])}}
                                 </div>
                             </div>
                             <div class="form-group">
                                 {{ Form::label('proof_upload', 'Proof of payment', ['class' => 'col-sm-3 control-label']) }}
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     {{ Form::file('proof_upload') }}
                                     <br>
                                     <span style="font-size: x-small">Please upload jpeg, pdf, jpg or png</span>
@@ -101,12 +110,12 @@
                             </div>
                             <div class="form-group">
                                 {{ Form::label('notes', 'Notes', ['class' => 'col-sm-3 control-label']) }}
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     {{ Form::textarea('notes', null, ['class' => 'form-control', 'placeholder' => 'Optional'])}}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-sm-6 col-md-offset-3">
+                                <div class="col-sm-7 col-md-offset-3">
                                    {{ Form::submit('Send request', ['class'=>'btn btn-lg btn-default']) }}
                                 </div>
                             </div>

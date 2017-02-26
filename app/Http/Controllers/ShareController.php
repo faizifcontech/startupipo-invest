@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Agent;
+use App\Bank;
 use App\Profile;
 use App\Profit;
 use Illuminate\Http\Request;
@@ -26,26 +28,12 @@ class ShareController extends Controller
 
     public function deposit()
     {
+        $getAgent = Auth::user()->agent_referral;
+        $linkToAgnt = Agent::where('ref_agent_name', $getAgent)->first();
+      //  $checkagentbank = Bank::where('user_id', $linkToAgnt->user_id)->exists();
+        $data['listBank'] = DB::table('banks')->where('user_id', $linkToAgnt->user_id)->select(['id','bankowner', 'bankname', 'bankaccnum'])->get();
+
         $data['jumlahperlot'] = lotshare::where('id', 1)->first();
-        //dd($data['jumlahperlot']);
-        $data['banklist'] = [
-            'AFFIN BANK' => 'AFFIN BANK BERHAD',
-            'AL RAJHI BANKING' => 'AL RAJHI BANKING AND INVESTMENT CORPORATION (MALAYSIA) BHD',
-            'ALLIANCE BANK MALAYSIA BERHAD' => 'ALLIANCE BANK MALAYSIA BERHAD',
-            'AMBANK (M) BERHAD' => 'AMBANK (M) BERHAD',
-            'BANK ISLAM MALAYSIA BERHAD' => 'BANK ISLAM MALAYSIA BERHAD',
-            'BANK RAKYAT' => 'BANK KERJASAMA RAKYAT MALAYSIA BERHAD (BANK RAKYAT)',
-            'BANK MUAMALAT MALAYSIA BERHAD ' => 'BANK MUAMALAT MALAYSIA BERHAD ',
-            'BANK SIMPANAN NASIONAL' => 'BANK SIMPANAN NASIONAL',
-            'BANK PERTANIAN MALAYSIA BERHAD-AGROBANK' => 'BANK PERTANIAN MALAYSIA BERHAD-AGROBANK',
-            'CIMB BANK BERHAD' => 'CIMB BANK BERHAD',
-            'HONG LEONG BANK BERHAD' => 'HONG LEONG BANK BERHAD',
-            'HSBC BANK MALAYSIA BERHAD' => 'HSBC BANK MALAYSIA BERHAD',
-            'OCBC BANK (MALAYSIA) BERHAD' => 'OCBC BANK (MALAYSIA) BERHAD',
-            'MAYBANK' => 'MALAYAN BANKING BERHAD (MAYBANK)',
-            'PUBLIC BANK BERHAD' => 'PUBLIC BANK BERHAD',
-            'RHB BANK BERHAD' => 'RHB BANK BERHAD'
-        ];
 
         return view('pages.share.deposit', $data);
     }
@@ -53,15 +41,20 @@ class ShareController extends Controller
     public function depositSaved(Request $request)
     {
         $this->validate($request, [
-            'transfer_to' => 'required',
+            'payment_method' => 'required',
             'per_lot' => 'required|integer|between:1,10',
             'total_share' => 'numeric|max:300000',
             'time_of_transaction' => 'date_format:"Y-m-d H:i"|required',
-            'proof_upload' => 'file|required|mimes:jpeg,jpg,pdf,png|max:4096',
+            'proof_upload' => 'file|required_unless:payment_method,Cash Payment|mimes:jpeg,jpg,pdf,png|max:4096',
             //'notes' => 'string|max:30',
         ]);
+        if ($request->file('proof_upload') == null){
+            $path = "assets/img/cash-payment.jpg";
+        }else{
+            $path = Storage::putFile('doc', $request->file('proof_upload'));
+        }
 
-        $path = Storage::putFile('doc', $request->file('proof_upload'));
+
         if ($request->roi == 3) {
             $profit_monthly = $request->total_share * 0.03;
         } elseif ($request->roi == 2) {
@@ -76,7 +69,7 @@ class ShareController extends Controller
             'monthly_profit' => $profit_monthly,
             'model_of_investment' => $request->roi,
             'per_lot' => $request->per_lot,
-            'send_to' => $request->transfer_to,
+            'send_to' => $request->payment_method,
             'transfer_on' => $request->time_of_transaction . ':00',//  "2016-11-28 12:27:00 ",
             'notes' => $request->notes,
         ]);

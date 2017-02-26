@@ -11,7 +11,7 @@ Referral Agent Name: {{ $details['ref_name'] }} <br/>
 Your Referral Link Register: [{{ url('reg',$details['ref_name']) }}]({{ url('reg',$details['ref_name']) }})
 
 
-@component('mail::button', ['url' => 'https://startupipo.com'])
+@component('mail::button', ['url' => 'http://startupipo.com'])
 Login Now
 @endcomponent
 

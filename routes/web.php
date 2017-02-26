@@ -53,14 +53,19 @@ Route::get('ref/{invitecode}', 'InviteController@registerRef')->middleware('gues
 //Admin Pages
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/', 'AdminController@index');
-    //deposit
-    Route::get('deposit', 'AdminController@depositIndex');
-    Route::get('deposit-edit/{id}', 'AdminController@depositEdit');
-    Route::post('deposit-update/{id}', 'AdminController@depositUpdate');
+
     //share per lot
     Route::get('share-per-lot', 'AdminController@shareIndex');
     Route::post('share-per-lot', 'AdminController@shareUpdate');
 
+    //Withdrawal
+    Route::get('withdrawal-list', 'Admin\UserSetController@withdrawalList');
+    Route::get('withdrawal-list/{id}', 'Admin\UserSetController@withdrawalView');
+    Route::put('withdrawal-list-edit/{id}', 'Admin\UserSetController@withdrawalPatch');
+    //deposit
+    Route::get('deposit', 'AdminController@depositIndex');
+    //UserList
+    Route::get('user_list', 'Admin\UserSetController@userList');
     // Tambah agent dan list agent
     Route::get('/list-agent', 'Admin\AgentsetController@index');
     Route::get('/add-agent', 'Admin\AgentsetController@create');
@@ -69,7 +74,12 @@ Route::group(['prefix' => 'admin'], function () {
 //Agent Pages
 Route::group(['prefix' => 'agent'], function () {
     Route::get('/', 'AgentController@index');
+    Route::get('add_signature', 'AgentController@siggyAgent') ;
+    Route::put('add_new_signature', 'AgentController@siggyAgentUpdate') ;
     Route::get('user_list', 'AgentController@userList');
+
+    //get withdrawal
+    Route::get('withdrawal-list', 'AgentProfitController@withdrawalList');
 
     //get deposit
     Route::get('depositlist', 'AgentProfitController@depositList');
@@ -80,4 +90,9 @@ Route::group(['prefix' => 'agent'], function () {
     Route::get('add-bank-info', 'AgentController@addBank');
     Route::post('add-bank-info', 'AgentController@postBank');
     Route::delete('add-bank-info/{id}', 'AgentController@deleteBank');
+
+    //Agent profile
+    Route::get('profile-index', 'AgentController@profileIndex' );
+    Route::put('profile-edit', 'AgentController@profileEdit' );
+    Route::get('profile-password', 'AgentController@profilePassword' );
 });
