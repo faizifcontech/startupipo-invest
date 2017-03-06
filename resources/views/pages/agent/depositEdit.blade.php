@@ -79,7 +79,7 @@
                                                         <a data-toggle="tooltip" data-placement="right"
                                                            title="View File" data-original-title="View File"
                                                            target="_blank"
-                                                           href="{{ asset($user->saved_url) }}">{{ asset($user->saved_url) }}</a>
+                                                           href="{{ asset('storage/' .$user->saved_url) }}">{{ asset('storage/' .$user->saved_url) }}</a>
                                                     </p>
                                                 </div>
                                             </div>
